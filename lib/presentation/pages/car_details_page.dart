@@ -5,10 +5,44 @@ import 'package:car_rental_app/presentation/widgets/car_card.dart';
 import 'package:car_rental_app/presentation/widgets/more_card.dart';
 import 'package:flutter/material.dart';
 
-class CarDetailsPage extends StatelessWidget {
+class CarDetailsPage extends StatefulWidget {
   final Car car;
 
   const CarDetailsPage({super.key, required this.car});
+
+  @override
+  State<CarDetailsPage> createState() => _CarDetailsPageState();
+}
+
+class _CarDetailsPageState extends State<CarDetailsPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _controller;
+  Animation<double>? _animation;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+
+    _animation = Tween<double>(begin: 1.0, end: 1.5).animate(_controller!)
+      ..addListener(() { setState(() {
+      }); });
+
+    _controller!.forward();
+
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller!.forward();
+
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +61,7 @@ class CarDetailsPage extends StatelessWidget {
           child: Column(
             children: [
               //Car Card – model, price, image
-              CarCard(car: car),
+              CarCard(car: widget.car),
               SizedBox(height: 20),
               Row(
                 children: [
@@ -42,15 +76,15 @@ class CarDetailsPage extends StatelessWidget {
               //List about more cars
               Column(
                 children: [
-                  MoreCard(car: car),
+                  MoreCard(car: widget.car),
                   SizedBox(height: 5),
-                  MoreCard(car: car),
+                  MoreCard(car: widget.car),
                   SizedBox(height: 5),
-                  MoreCard(car: car),
+                  MoreCard(car: widget.car),
                   SizedBox(height: 5),
-                  MoreCard(car: car),
+                  MoreCard(car: widget.car),
                   SizedBox(height: 5),
-                  MoreCard(car: car),
+                  MoreCard(car: widget.car),
                 ],
               ),
             ],
@@ -98,9 +132,12 @@ class CarDetailsPage extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap:
-            () => Navigator.push(
+            () =>
+            Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MapDetailsPage(car: car)),
+              MaterialPageRoute(
+                builder: (context) => MapDetailsPage(car: widget.car),
+              ),
             ),
         child: Container(
           height: 170,
@@ -111,7 +148,16 @@ class CarDetailsPage extends StatelessWidget {
               BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 5),
             ],
           ),
-          child: Image.asset('assets/images/maps.png', fit: BoxFit.cover),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Transform.scale(
+              scale: _animation!.value,
+              alignment: Alignment.center,
+              child: Image.asset('assets/images/maps.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ),
       ),
     );
