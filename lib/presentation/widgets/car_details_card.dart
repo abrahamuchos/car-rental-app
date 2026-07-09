@@ -1,8 +1,13 @@
+import 'dart:ffi';
+
 import 'package:car_rental_app/presentation/widgets/car_statics.dart';
 import 'package:flutter/material.dart';
 
 class CarDetailsCard extends StatelessWidget {
-  const CarDetailsCard({super.key});
+  final String model;
+  final double price;
+  
+  const CarDetailsCard({super.key, required this.model, required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class CarDetailsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Fortuner GR',
+                      model,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -101,7 +106,7 @@ class CarDetailsCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$45.0/day',
+                          "\$${price.toStringAsFixed(2)}/day",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,

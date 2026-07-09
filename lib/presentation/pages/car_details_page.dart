@@ -1,5 +1,6 @@
 import 'package:car_rental_app/core/theme/app_colors.dart';
 import 'package:car_rental_app/data/models/car.dart';
+import 'package:car_rental_app/presentation/pages/map_details_page.dart';
 import 'package:car_rental_app/presentation/widgets/car_card.dart';
 import 'package:car_rental_app/presentation/widgets/more_card.dart';
 import 'package:flutter/material.dart';
@@ -17,36 +18,41 @@ class CarDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.only(right: 20, left: 20, top: 15, bottom: 20),
+          padding: const EdgeInsets.only(
+            right: 20,
+            left: 20,
+            top: 15,
+            bottom: 20,
+          ),
           child: Column(
             children: [
+              //Car Card – model, price, image
               CarCard(car: car),
               SizedBox(height: 20),
               Row(
                 children: [
-                  //Card User
+                  //Card User – Info user and price
                   _buildCardUser(),
                   SizedBox(width: 20),
-                  //Card Map
-                  _buildCardMap(),
+                  //Card Map – Pre image to button map
+                  _buildCardMap(context),
                 ],
               ),
               SizedBox(height: 20),
-              //List
+              //List about more cars
               Column(
                 children: [
-                  MoreCard(car: car,),
-                  SizedBox(height: 5,),
-                  MoreCard(car: car,),
-                  SizedBox(height: 5,),
-                  MoreCard(car: car,),
-                  SizedBox(height: 5,),
-                  MoreCard(car: car,),
-                  SizedBox(height: 5,),
-                  MoreCard(car: car,),
+                  MoreCard(car: car),
+                  SizedBox(height: 5),
+                  MoreCard(car: car),
+                  SizedBox(height: 5),
+                  MoreCard(car: car),
+                  SizedBox(height: 5),
+                  MoreCard(car: car),
+                  SizedBox(height: 5),
+                  MoreCard(car: car),
                 ],
-              )
-
+              ),
             ],
           ),
         ),
@@ -88,18 +94,25 @@ class CarDetailsPage extends StatelessWidget {
     );
   }
 
-  Expanded _buildCardMap() {
+  Expanded _buildCardMap(BuildContext context) {
     return Expanded(
-      child: Container(
-        height: 170,
-        decoration: BoxDecoration(
-          color: AppColors.whiteGray,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 5),
-          ],
+      child: GestureDetector(
+        onTap:
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MapDetailsPage(car: car)),
+            ),
+        child: Container(
+          height: 170,
+          decoration: BoxDecoration(
+            color: AppColors.whiteGray,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 5),
+            ],
+          ),
+          child: Image.asset('assets/images/maps.png', fit: BoxFit.cover),
         ),
-        child: Image.asset('assets/images/maps.png', fit: BoxFit.cover),
       ),
     );
   }

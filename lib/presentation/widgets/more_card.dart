@@ -32,6 +32,7 @@ class MoreCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
+              // Car Statics - info (fuel and battery)
               CarStatics(
                 distance: car.distance.toStringAsFixed(0),
                 fuelCapacity: car.distance.toStringAsFixed(0),
