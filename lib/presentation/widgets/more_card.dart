@@ -1,4 +1,5 @@
 import 'package:car_rental_app/data/models/car.dart';
+import 'package:car_rental_app/presentation/widgets/car_statics.dart';
 import 'package:flutter/material.dart';
 
 class MoreCard extends StatelessWidget {
@@ -31,7 +32,10 @@ class MoreCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              _buildStatics(),
+              CarStatics(
+                distance: car.distance.toStringAsFixed(0),
+                fuelCapacity: car.distance.toStringAsFixed(0),
+              ),
               SizedBox(height: 10),
             ],
           ),
@@ -39,40 +43,6 @@ class MoreCard extends StatelessWidget {
           Icon(Icons.arrow_forward, color: Colors.white),
         ],
       ),
-    );
-  }
-
-  Row _buildStatics() {
-    return Row(
-      children: [
-        Row(
-          children: [
-            Icon(Icons.directions_car, color: Colors.white, size: 16),
-            Text(
-              ' > ${car.distance.toString()}km',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(width: 10),
-        Row(
-          children: [
-            Icon(Icons.battery_full_sharp, color: Colors.white, size: 16),
-            Text(
-              car.fuelCapacity.toString(),
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
