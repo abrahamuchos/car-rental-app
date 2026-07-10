@@ -1,24 +1,24 @@
+import 'package:car_rental_app/injection_container.dart';
 import 'package:car_rental_app/presentation/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   //Load .env
-  try{
-   await dotenv.load(fileName: ".env");
-  }catch (e){
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
     print('Error loading .env file: $e');
   }
 
   //Load firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //Service Injection
+  initInjection();
   runApp(const MyApp());
 }
 
@@ -39,5 +39,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
