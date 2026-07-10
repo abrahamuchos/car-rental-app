@@ -60,9 +60,10 @@ _This is based on FlutterGuys' practices. Here are their repositories_:<br>
 
 
 ## 📷 Screenshot
-<img src="docs/screenshots/login_screenshot_20260701_115224.png" width="300"/>
-<img src="docs/screenshots/signup_screenshot_20260701_115056.png" width="300"/>
-<img src="docs/screenshots/splash_screenshot.png" width="300"/>
+<img src="docs/screenshots/img.png" width="300"/>
+<img src="docs/screenshots/img_2.png" width="300"/>
+<img src="docs/screenshots/img_3.png" width="300"/>
+<img src="docs/screenshots/img_4.png" width="300"/>
 
 
 ## 🧑‍💻 Authors
