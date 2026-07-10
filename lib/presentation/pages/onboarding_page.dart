@@ -45,11 +45,11 @@ class OnboardingPage extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
+                        Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                             builder: (context) => CarListPage(),
                           ),
+                          (route) => false,
                         );
                       },
                       style: ElevatedButton.styleFrom(
